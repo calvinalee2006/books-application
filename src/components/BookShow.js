@@ -1,25 +1,35 @@
 import { useState } from "react";
+import BookEdit from "./BookEdit";
 
-function BookEdit({ book }) {
-  const [title, setTitle] = useState(book.title);
+function BookShow({ book, onDelete, onEdit }) {
+  const [showEdit, setShowEdit] = useState(false);
 
-  const handleChange = (event) => {
-    setTitle(event.target.value);
+  const handleDeleteClick = () => {
+    onDelete(book.id);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log("New title", title);
+  const handleEditClick = () => {
+    setShowEdit(!showEdit);
   };
+
+  let content = <h3>{book.title}</h3>;
+  if (showEdit) {
+    content = <BookEdit onEdit={onEdit} book={book} />;
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="book-edit">
-      <label>Title</label>
-      <input className="input" value={title} onChange={handleChange} />
-      <button className="button is-primary">Save</button>
-    </form>
+    <div className="book-show">
+      <div>{content}</div>
+      <div className="actions">
+        <button className="edit" onClick={handleEditClick}>
+          Edit
+        </button>
+        <button className="delete" onClick={handleDeleteClick}>
+          Delete
+        </button>
+      </div>
+    </div>
   );
 }
 
-export default BookEdit;
+export default BookShow;

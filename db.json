@@ -1,12 +1,16 @@
 {
   "books": [
     {
-      "title": "MF harry potter",
+      "title": "Hunger games",
       "id": 1
     },
     {
-      "title": "whats the problem?",
+      "title": "Harry Potter",
       "id": 2
+    },
+    {
+      "title": "Cat and the Hat",
+      "id": 3
     }
   ]
 }
